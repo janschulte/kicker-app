@@ -1,34 +1,44 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { AddGamePage } from '../pages/add-game/add-game';
+import { RankingPage } from '../pages/ranking/ranking';
+import { GamesProvider } from '../providers/api/games/games';
+import { PlayersProvider } from '../providers/api/players/players';
+import { SettingsProvider } from '../providers/settings/settings';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { CreatePlayerPage } from '../pages/create-player/create-player';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    AddGamePage,
+    RankingPage,
+    CreatePlayerPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    AddGamePage,
+    RankingPage,
+    CreatePlayerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    PlayersProvider,
+    SettingsProvider,
+    GamesProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Players ranking</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let player of players" (click)="playerClicked(player)">
+      {{player.name}}
+      <div class="item-note" item-end>
+        {{player.eloTeam}}
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

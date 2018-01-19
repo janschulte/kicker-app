@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Game</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list radio-group [(ngModel)]="gameType">
+    <ion-list-header color="primary">
+      Game Type
+    </ion-list-header>
+    <ion-item>
+      <ion-label>1v1</ion-label>
+      <ion-radio value="one" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>2v2</ion-label>
+      <ion-radio value="two"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="gameType">
+    <ion-list-header color="primary">
+      Team One
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Player One</ion-label>
+      <ion-select [(ngModel)]="playerOneHome">
+        <ion-option *ngFor="let player of players" value="{{player.name}}">{{player.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="gameType ==='two'">
+      <ion-label>Player Two</ion-label>
+      <ion-select [(ngModel)]="playerTwoHome">
+        <ion-option *ngFor="let player of players" value="{{player.name}}">{{player.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Goals</ion-label>
+      <ion-input type="number" [(ngModel)]="homeGoals"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="gameType">
+    <ion-list-header color="primary">
+      Team Two
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Player</ion-label>
+      <ion-select [(ngModel)]="playerOneAway">
+        <ion-option *ngFor="let player of players" value="{{player.name}}">{{player.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="gameType ==='two'">
+      <ion-label>Player</ion-label>
+      <ion-select [(ngModel)]="playerTwoAway">
+        <ion-option *ngFor="let player of players" value="{{player.name}}">{{player.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Goals</ion-label>
+      <ion-input type="number" [(ngModel)]="awayGoals" [min]="0" required></ion-input>
+    </ion-item>
+  </ion-list>
+  <button *ngIf="gameType" ion-button full (click)="confirmGame()">Create Game</button>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create player</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">Inline Label</ion-label>
+      <ion-input [(ngModel)]="playerName" placeholder=""></ion-input>
+    </ion-item>
+  </ion-list>
+  <button *ngIf="playerName" ion-button full (click)="createPlayer()">Create Player</button>
+</ion-content>
